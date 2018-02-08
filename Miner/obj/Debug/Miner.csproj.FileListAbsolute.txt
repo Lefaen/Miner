@@ -1,0 +1,10 @@
+D:\Miner\Miner\bin\Debug\Miner.exe.config
+D:\Miner\Miner\bin\Debug\Miner.exe
+D:\Miner\Miner\bin\Debug\Miner.pdb
+D:\Miner\Miner\obj\Debug\Miner.csprojResolveAssemblyReference.cache
+D:\Miner\Miner\obj\Debug\Miner.Properties.Resources.resources
+D:\Miner\Miner\obj\Debug\Miner.csproj.GenerateResource.Cache
+D:\Miner\Miner\obj\Debug\Miner.csproj.CoreCompileInputs.cache
+D:\Miner\Miner\obj\Debug\Miner.exe
+D:\Miner\Miner\obj\Debug\Miner.pdb
+D:\Miner\Miner\obj\Debug\Miner.FormMiner.resources
