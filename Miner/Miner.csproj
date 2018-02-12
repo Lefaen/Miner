@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Bomb.cs" />
     <Compile Include="Classes\Cell.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -56,8 +55,10 @@
     <Compile Include="FormMiner.Designer.cs">
       <DependentUpon>FormMiner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\BoomHandler.cs" />
     <Compile Include="Handlers\ClickCellHandler.cs" />
-    <Compile Include="Handlers\CreateGameHandler.cs" />
+    <Compile Include="Handlers\ViewField.cs" />
+    <Compile Include="Handlers\ViewCell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMiner.resx">

@@ -18,5 +18,11 @@ namespace Miner
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMiner());
         }
+        
+    }
+    public static class Data
+    {
+        public delegate void Event(object sender);
+        public static Event EvantHandler;
     }
 }

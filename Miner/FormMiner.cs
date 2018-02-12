@@ -15,21 +15,16 @@ namespace Miner
         public FormMiner()
         {
             InitializeComponent();
-
-            Classes.Field.OnCreateGame += Handlers.CreateGame.ViewField;            //Вывод поля
-            Classes.Field.OnCreateGame += Handlers.CreateGame.ViewMines;            //Вывод мин
-            Classes.Field.OnCreateGame += Handlers.CreateGame.ViewNum;              //вывод цифр
-
-            
         }
 
         private void ButtonStartGame_Click(object sender, EventArgs e)
         {
+            Data.EvantHandler += new Data.Event(Handlers.CreateGame.ViewField);
+
             Classes.Field field = new Classes.Field();
             field.CreateField(Convert.ToInt32(textBoxWidth.Text), Convert.ToInt32(textBoxHeight.Text), Convert.ToInt32(textBoxNumOfBomb.Text));
-            
         }
-        
-       
+
+
     }
 }

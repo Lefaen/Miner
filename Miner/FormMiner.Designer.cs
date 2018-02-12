@@ -60,7 +60,7 @@
             this.textBoxNumOfBomb.Name = "textBoxNumOfBomb";
             this.textBoxNumOfBomb.Size = new System.Drawing.Size(20, 20);
             this.textBoxNumOfBomb.TabIndex = 5;
-            this.textBoxNumOfBomb.Text = "20";
+            this.textBoxNumOfBomb.Text = "15";
             // 
             // labelNumOfBomb
             // 
