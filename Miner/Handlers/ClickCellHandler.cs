@@ -12,29 +12,50 @@ namespace Miner.Handlers
 
         delegate void ViewCell();
         ViewCell GetViewCell;
-        ViewCell GameOver;
+        delegate void GameOver();
+        GameOver Boom;
+        GameOver Win;
 
         public void ButtonCell_Click(object sender, EventArgs e)
         {
             try
             {
                 GetViewCell += Handlers.ViewCell.View;
-                GameOver += Handlers.BoomHandler.TheEnd;
+                Boom += Handlers.BoomHandler.ShowMessage;
+                Win += Handlers.BoomHandler.WinMessage;
 
                 Classes.Cell cell = sender as Classes.Cell;
                 MouseEventArgs mouse = e as MouseEventArgs;
 
-                if ((e as MouseEventArgs).Button == MouseButtons.Right & !cell.isOpen)
+                if ((e as MouseEventArgs).Button == MouseButtons.Right & !cell.IsOpen)
                 {
-                    cell.flag = !cell.flag;
-                    GetViewCell();
+                    System.Windows.Forms.Label labelNumBombLeft = FormMiner.ActiveForm.Controls["labelNumBombLeft"] as System.Windows.Forms.Label;
+                    
+                    if (!cell.Flag & Classes.Field.NumBomb > 0)
+                    {
+                        cell.Flag = !cell.Flag;
+                        Classes.Field.NumBomb = Classes.Field.NumBomb - 1;
+                        labelNumBombLeft.Text = Classes.Field.NumBomb.ToString();
+                        GetViewCell();
+                    }
+                    else
+                    if(cell.Flag)
+                    {
+                        cell.Flag = !cell.Flag;
+                        Classes.Field.NumBomb = Classes.Field.NumBomb + 1;
+                        labelNumBombLeft.Text = Classes.Field.NumBomb.ToString();
+                        GetViewCell();
+                    }
+                    
+                    
                 }
                 else
                 {
-                    if (cell.bomb & !cell.flag)
+
+                    if (cell.Bomb & !cell.Flag)
                     {
-                        cell.isOpen = true;
-                        GameOver();
+                        cell.IsOpen = true;
+                        Boom();
                     }
                     else
                     {
@@ -53,25 +74,28 @@ namespace Miner.Handlers
         void EmptyCell(Classes.Cell cell)
         {
             Classes.Cell checkCell = null;
-            if (!cell.bomb & !cell.flag)
+            if (!cell.Bomb & !cell.Flag)
             {
-                cell.isOpen = true;
+                cell.IsOpen = true;
                 for (int j = cell.IndexJ - 1; j <= cell.IndexJ + 1; j++)
                 {
                     for (int i = cell.IndexI - 1; i <= cell.IndexI + 1; i++)
                     {
-                        if ((i == cell.IndexI & j == cell.IndexJ) | (i < 0 | j < 0 | i >= 10 | j >= 12))
+                        if ((i == cell.IndexI & j == cell.IndexJ) | 
+                            (i < 0 | j < 0 | 
+                            i >= Classes.Field.Width | 
+                            j >= Classes.Field.Height))
                         {
                             continue;
                         }
                         checkCell = Miner.FormMiner.ActiveForm.Controls["Cell" + i.ToString() + j.ToString()] as Classes.Cell;
-                        if (checkCell.bomb)
+                        if (checkCell.Bomb)
                         {
-                            cell.isBombs = true;
+                            cell.IsBombs = true;
                         }
-                        if(cell.isBombs == false & 
-                            checkCell.isOpen == false & 
-                            cell.num.Text == 0.ToString())
+                        if(cell.IsBombs == false & 
+                            checkCell.IsOpen == false & 
+                            cell.Num.Text == 0.ToString())
                         {
                             EmptyCell(checkCell);
                         }

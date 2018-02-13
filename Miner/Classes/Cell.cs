@@ -12,40 +12,37 @@ namespace Miner.Classes
         public int IndexI, IndexJ;
 
 
-        public bool flag;
-        public bool isOpen;
-        public bool bomb;
-        public bool isBombs;
-        public Label num;
-        
+        public bool Flag { get; set; }
+        public bool IsOpen { get; set; }
+        public bool Bomb { get; set; }
+        public bool IsBombs { get; set; }
+        public Label Num { get; set; }
+
 
         public Cell(int i, int j, int size, int LocationX, int LocationY)
         {
             this.IndexI = i;
             this.IndexJ = j;
-            this.bomb = false;
-            this.flag = false;
-            this.isOpen = false;
-            this.isBombs = false;
+            this.Bomb = false;
+            this.Flag = false;
+            this.IsOpen = false;
+            this.IsBombs = false;
             this.Visible = false;
 
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BackColor = System.Drawing.Color.White;
-
             this.Size = new System.Drawing.Size(size, size);
-
-            this.num = new Label();
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.num.BackColor = System.Drawing.Color.Transparent;
-            this.num.Name = "Label" + this.IndexI.ToString() + this.IndexJ.ToString();
-            this.num.Visible = false;
-            this.num.Text = 0.ToString();
-
             this.Location = new System.Drawing.Point(LocationX, LocationY);
-
             this.Name = "Cell" + this.IndexI.ToString() + this.IndexJ.ToString();
+
+            this.Num = new Label();
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.Num.BackColor = System.Drawing.Color.Transparent;
+            this.Num.Name = "Label" + this.IndexI.ToString() + this.IndexJ.ToString();
+            this.Num.Visible = false;
+            this.Num.Text = 0.ToString();
+            
             FormMiner.ActiveForm.Controls.Add(this);
-            this.Controls.Add(this.num);
+            this.Controls.Add(this.Num);
             
         }
     }

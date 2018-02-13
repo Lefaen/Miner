@@ -8,20 +8,26 @@ namespace Miner.Classes
 {
     class Field
     {
-        public Classes.Cell[,] CreateField(int width, int height, int numBomb)
+        public static int Width { get; set; }
+        public static int Height { get; set; }
+        public static int SizeCell { get; set; }
+        public static int NumBomb { get; set; }
+
+
+        public static Classes.Cell[,] CreateField(int numBomb, int width, int height)
         {
             ResetField();
 
-            int SizeCell = 20;
-            int locX = 100;
-            int locY = 0;
+            SizeCell = 20;
+            int locX = 0;
+            int locY = 10;
             
             Cell[,] field = new Cell[width, height];
             
 
             for (int j = 0; j<height; j++)
             {
-                locX = 100;
+                locX = 0;
                 
 
                 for (int i = 0; i<width; i++)
@@ -34,16 +40,19 @@ namespace Miner.Classes
                     field[i, j].Click += new System.EventHandler(OnClick.ButtonCell_Click);
                 }
                 locY = locY + SizeCell;
+                
             }
 
+            FormMiner.ActiveForm.Size = new System.Drawing.Size(SizeCell * width+55, SizeCell * height+80);
+
             PositionMines(field, numBomb, width, height);
-            NumOfBombCell(field,width,height);
+            NumOfBombCell(field, width, height);
 
             Data.EvantHandler(field);
             return field;
         }
         
-        void PositionMines (Classes.Cell[,] field, int limitBomb, int limitX, int limitY)
+        static void PositionMines (Classes.Cell[,] field, int limitBomb, int limitX, int limitY)
         {
 
             while(limitBomb > 0)
@@ -55,9 +64,9 @@ namespace Miner.Classes
                 
                     foreach (Cell cell in field)
                     {
-                        if (cell.IndexI == x & cell.IndexJ == y & !cell.bomb)
+                        if (cell.IndexI == x & cell.IndexJ == y & !cell.Bomb)
                         {
-                            cell.bomb = true;
+                            cell.Bomb = true;
                             limitBomb = limitBomb - 1;
                             break;
                         }
@@ -67,7 +76,7 @@ namespace Miner.Classes
             }
         }
         
-        void NumOfBombCell(Classes.Cell[,] field, int limitX, int limitY)
+        static void NumOfBombCell(Classes.Cell[,] field, int limitX, int limitY)
         {
             
             
@@ -75,7 +84,7 @@ namespace Miner.Classes
             foreach(Cell cell in field)
             {
                 int num = 0;
-                if (!cell.bomb)
+                if (!cell.Bomb)
                 {
                     for (int j = cell.IndexJ - 1; j <= cell.IndexJ + 1; j++)
                     {
@@ -86,29 +95,22 @@ namespace Miner.Classes
                                 continue;
                             }
 
-                            if (field[i, j].bomb)
+                            if (field[i, j].Bomb)
                             {
                                 num = num + 1;
                             }
                         }
                     }
-                    cell.num.Text = num.ToString();
+                    cell.Num.Text = num.ToString();
                 }
             }
         }
 
-        static void ResetField()
+        public static void ResetField()
         {
-
-            foreach (System.Windows.Forms.Control elm in FormMiner.ActiveForm.Controls)
-            {
-                Classes.Cell cell = elm as Classes.Cell;
-                if (cell != null)
-                {
-                    FormMiner.ActiveForm.Controls.Remove(cell);
-                    FormMiner.ActiveForm.Controls.Remove(cell.num);
-                }
-            }
+                
+            
+            
         }
     }
 }

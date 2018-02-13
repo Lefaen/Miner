@@ -21,10 +21,19 @@ namespace Miner
         {
             Data.EvantHandler += new Data.Event(Handlers.CreateGame.ViewField);
 
-            Classes.Field field = new Classes.Field();
-            field.CreateField(Convert.ToInt32(textBoxWidth.Text), Convert.ToInt32(textBoxHeight.Text), Convert.ToInt32(textBoxNumOfBomb.Text));
+
+            Classes.Field.Width = Convert.ToInt32(textBoxWidth.Text);
+            Classes.Field.Height = Convert.ToInt32(textBoxHeight.Text);
+            Classes.Field.NumBomb = Convert.ToInt32(textBoxNumOfBomb.Text);
+            labelNumBombLeft.Text = textBoxNumOfBomb.Text;
+
+            Classes.Field.CreateField(Classes.Field.NumBomb, Classes.Field.Width, Classes.Field.Height);
         }
-
-
+        
+        private void ButtonNewField_Click(object sender, EventArgs e)
+        {
+            Miner.FormMiner.ActiveForm.Controls.Clear();
+            InitializeComponent();
+        }
     }
 }

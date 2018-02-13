@@ -19,25 +19,25 @@ namespace Miner.Handlers
                 Classes.Cell cell = elm as Classes.Cell;
                 if(cell != null)
                 {
-                    if (cell.flag)
+                    if (cell.Flag)
                     {
                         cell.BackColor = flag;
                     }
                     else
                     {
-                        if (cell.isOpen == true)
+                        if (cell.IsOpen == true)
                         {
-                            if (cell.bomb)
+                            if (cell.Bomb)
                             {
                                 cell.BackColor = bomb;
                             }
                             else
                             {
                                 cell.BackColor = emptyCell;
-                                if (cell.num.Text != 0.ToString())
+                                if (cell.Num.Text != 0.ToString())
                                 {
-                                    cell.num.Visible = true;
-                                    cell.num.BringToFront();
+                                    cell.Num.Visible = true;
+                                    cell.Num.BringToFront();
                                 }
                             }
                         }

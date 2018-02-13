@@ -9,9 +9,13 @@ namespace Miner.Handlers
 {
     class BoomHandler
     {
-        public static void TheEnd()
+        public static void ShowMessage()
         {
             MessageBox.Show("Бум");
+        }
+        public static void WinMessage()
+        {
+            MessageBox.Show("Вы выйграли");
         }
     }
 }
