@@ -19,7 +19,7 @@ namespace Miner.Classes
         public Label Num { get; set; }
 
 
-        public Cell(int i, int j, int size, int LocationX, int LocationY)
+        public Cell(int i, int j)
         {
             this.IndexI = i;
             this.IndexJ = j;
@@ -30,10 +30,7 @@ namespace Miner.Classes
             this.Visible = false;
 
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Size = new System.Drawing.Size(size, size);
-            this.Location = new System.Drawing.Point(LocationX, LocationY);
             this.Name = "Cell" + this.IndexI.ToString() + this.IndexJ.ToString();
-
             this.Num = new Label();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.Num.BackColor = System.Drawing.Color.Transparent;

@@ -8,3 +8,12 @@ D:\Miner\Miner\obj\Debug\Miner.csproj.CoreCompileInputs.cache
 D:\Miner\Miner\obj\Debug\Miner.exe
 D:\Miner\Miner\obj\Debug\Miner.pdb
 D:\Miner\Miner\obj\Debug\Miner.FormMiner.resources
+D:\Miner-master\Miner\bin\Debug\Miner.exe.config
+D:\Miner-master\Miner\obj\Debug\Miner.exe
+D:\Miner-master\Miner\obj\Debug\Miner.pdb
+D:\Miner-master\Miner\bin\Debug\Miner.exe
+D:\Miner-master\Miner\bin\Debug\Miner.pdb
+D:\Miner-master\Miner\obj\Debug\Miner.csprojResolveAssemblyReference.cache
+D:\Miner-master\Miner\obj\Debug\Miner.FormMiner.resources
+D:\Miner-master\Miner\obj\Debug\Miner.Properties.Resources.resources
+D:\Miner-master\Miner\obj\Debug\Miner.csproj.GenerateResource.Cache

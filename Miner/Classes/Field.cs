@@ -8,48 +8,36 @@ namespace Miner.Classes
 {
     class Field
     {
-        public static int Width { get; set; }
+		public delegate void Event (int numBomb, int width, int height);
+		public static Event delCreateField = CreateField;
+
+
+		public static int Width { get; set; }
         public static int Height { get; set; }
-        public static int SizeCell { get; set; }
         public static int NumBomb { get; set; }
+		public static int Flags { get; set; }
+		
 
-
-        public static Classes.Cell[,] CreateField(int numBomb, int width, int height)
+		static void CreateField(int numBomb, int width, int height)
         {
-            ResetField();
-
-            SizeCell = 20;
-            int locX = 0;
-            int locY = 10;
-            
             Cell[,] field = new Cell[width, height];
             
 
             for (int j = 0; j<height; j++)
             {
-                locX = 0;
-                
-
                 for (int i = 0; i<width; i++)
                 {
-                    locX = locX + SizeCell;
-                    
-                    field[i,j] = (new Cell(i, j, SizeCell, locX, locY));
+                    field[i,j] = (new Cell(i, j));
 
                     Handlers.ClickCellHandler OnClick = new Handlers.ClickCellHandler();
                     field[i, j].Click += new System.EventHandler(OnClick.ButtonCell_Click);
                 }
-                locY = locY + SizeCell;
-                
             }
 
-            FormMiner.ActiveForm.Size = new System.Drawing.Size(SizeCell * width+55, SizeCell * height+80);
-
             PositionMines(field, numBomb, width, height);
-            NumOfBombCell(field, width, height);
+            PositionNumOfBombCell(field, width, height);
 
             Data.EvantHandler(field);
-            return field;
         }
         
         static void PositionMines (Classes.Cell[,] field, int limitBomb, int limitX, int limitY)
@@ -76,11 +64,8 @@ namespace Miner.Classes
             }
         }
         
-        static void NumOfBombCell(Classes.Cell[,] field, int limitX, int limitY)
+        static void PositionNumOfBombCell(Classes.Cell[,] field, int limitX, int limitY)
         {
-            
-            
-
             foreach(Cell cell in field)
             {
                 int num = 0;
@@ -105,12 +90,6 @@ namespace Miner.Classes
                 }
             }
         }
-
-        public static void ResetField()
-        {
-                
-            
-            
-        }
+		
     }
 }
